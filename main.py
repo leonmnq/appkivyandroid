@@ -7,12 +7,16 @@ from kivy.uix.screenmanager import Screen  # classe Screen cria telas
 from telas import *  # importa todas as classes do arquivo telas.py
 from botoes import *  # importa todas as classes do botoes.py
 import requests  # para poder fazer requesições no banco de dados
-from bannervenda import BannerVenda  # importa a classe BannerVenda
 import os  # para lidar com arquivos do computador
+import certifi  # necessário para requisições https
+from bannervenda import BannerVenda  # importa a classe BannerVenda
 from functools import partial  # o partial permite que você passe um parâmetro para uma função que está sendo usada como parâmetro para o botão
 from myfirebase import MyFirebase  # importa a classe MyFirebase
 from bannervendedor import BannerVendedor  # importa a classe BannerVendedor
 from datetime import date  # para pegar a data atual
+
+# variável de ambiente para o celular conseguir fazer requisições com a internet, para o aplicativo funcionar no celular
+os.environ["SSL_CERT_FILE"] = certifi.where()  # arquivo do certificado ssl que é o certificado que diz esse HTTPS
 
 GUI = Builder.load_file("main.kv")  # a interface gráfica será Builder.load_file("main.kv")
 
