@@ -1,0 +1,86 @@
+# segundo passo para criar uma página, criar o arquivo . kv
+
+<HomePage>:
+    FloatLayout:
+        # tudo que está dentro do FloatLayout tem que ter pos_hint, 'right, top' e size_hint, 'largura, altura'
+        canvas:
+            # canvas é onde vamos desenhar os elementos, por padrão o fundo é preto
+
+            Rectangle:
+                # mesmo tamanho do FloatLayout
+                size: self.size
+
+                # mesma posição do FloatLayout
+                pos: self.pos
+
+                # carrega imagem
+                source: "icones/bg1.png"
+
+        Label:
+            text: "Homepage"
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "icones/botao_fino.png"
+            pos_hint: {"right": 0.85, "top": 0.95}
+            size_hint: 0.7, 0.2
+            text: "Total de Vendas: R$1"
+            id: label_total_vendas
+            # markup: True permite editar um pedaço do texto de um jeito e outro pedaço de outro jeito
+            markup: True
+
+        # lista de vendas
+        # ScrollView permite a pessoa subir e descer a tela com o dedo
+        ScrollView:
+            pos_hint: {"right": 1, "top": 0.75}
+            size_hint: 1, 0.63
+
+            # primeira etapa para criação do banner, preparar nosso arquivo .kv com nosso ScrollView com GridLayout dentro dele e os Procedimentos
+            # cada um dos banners que vão ficar surgindo terão o mesmo tamanho e de forma proporcional com o GridLayout
+            GridLayout:
+                # o número de linhas será dinâmico, de acordo com as vendas que vamos adicionando
+                # cada banner vai ocupar a linha inteira
+                cols: 1
+                id: lista_vendas
+
+                # Procedimentos para arrastar o scroll de cima para baixo... (vertical)
+                size_hint_y: None
+                # spacing para espaçamento entre os banners
+                spacing: 2, 2
+                height: self.minimum_height
+                # 90dp é a altura do banner
+                row_default_height: "90dp"
+                row_force_default: True
+
+        # 3 botões da Homepage
+        # vamos usar o GridLayout porque ele já divide divide os 3 botões de forma proporcional dentro desse "rodapé"
+        GridLayout:
+            # GridLayout precisa ter a quantidade de linhas
+            rows: 1
+            # precisa ter o pos_hint e size_hint porque está dentro do FloatLayout principal
+            pos_hint: {"right": 1, "top": 0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#006D7E")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                # já o objeto dentro do GridLayout não precisa ter pos_hint e size_hint
+                source: "icones/add.png"
+                # on_release é quando clica e solta sobre o botão
+                on_release: app.mudar_tela("adicionarvendaspage")
+            ImageButton:
+                # já o objeto dentro do GridLayout não precisa ter pos_hint e size_hint
+                source: "icones/salesman.png"
+                on_release: app.mudar_tela("listarvendedorespage")
+            ImageButton:
+                # já o objeto dentro do GridLayout não precisa ter pos_hint e size_hint
+                source: "icones/settings.png"
+                # app. para usar uma função dentro da classe MainApp do arquivo main.py
+                on_release: app.mudar_tela("ajustespage")
+                # self.root # faz referência ao gerenciador de telas, main.kv
+
+

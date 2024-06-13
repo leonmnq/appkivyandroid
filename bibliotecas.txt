@@ -1,0 +1,1 @@
+pip install kivy # biblioteca para criação de aplicativos mobile em python

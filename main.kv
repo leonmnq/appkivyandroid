@@ -1,0 +1,96 @@
+# a parte lógica vai ser criada em .py e a parte visual vai ser criada em .kv
+# aqui escrevemos tudo que aparecerá na tela
+# documentação kivy: https://kivy.org/doc/stable/guide/lang.html#
+
+# GridLayout: # caixa, forma de organizar a sua tela, os objetos vão dividir em proporções iguais a sua tela
+#    rows: 2 # é obrigado a passar o número de linhas dentro de um GridLayout
+#    columns: 1
+#    Label: # objeto
+#        text: "Meu nome é Bira" # propriedade, valor
+#    Label: # objeto
+#        text: "Esse é o Python Impressionador" # propriedade, valor
+
+#Image:
+#    arquivo: valor tal
+#    posicao: valor tal
+
+#Button:
+#    text: "Valor tal"
+#    quando_clicar: faz isso
+
+
+# terceiro passo da criação de página, incluir a página aqui no main.kv
+#:include kv/homepage.kv
+#:include kv/ajustespage.kv
+#:include kv/adicionarvendaspage.kv
+#:include kv/adicionarvendedorpage.kv
+#:include kv/fotoperfilpage.kv
+#:include kv/listarvendedorespage.kv
+#:include kv/todasvendaspage.kv
+#:include kv/loginpage.kv
+#:include kv/vendasoutrovendedorpage.kv
+
+# importando a biblioteca utils para passar a cor hexadecimal
+#:import utils kivy.utils
+
+FloatLayout:
+    # tudo que está dentro do FloatLayout tem que ter pos_hint, 'right, top' e size_hint, 'largura, altura'
+
+    # vamos desenhar nosso "cabeçalho"
+    canvas:
+        # canvas é onde vamos desenhar os elementos, por padrão o fundo é preto
+        # editando a cor de fundo
+        Color:
+            # rgb: (r, g, b, transparência)
+            # rgb: (0.266666667, 0.447058854, 0.768627451, 1)
+            rgb: utils.get_color_from_hex("#001824")
+        Rectangle:
+            size: self.size
+            # mesmo tamanho do FloatLayout
+            pos: self.pos
+            # mesma posição do FloatLayout
+
+    # carregar a logo da hashtag no 30% superior da página
+    Image:
+        pos_hint: {"right":1, "top": 0.9}
+        size_hint: 1, 0.2
+        # logo da hashtag
+        source: "icones/hash.png"
+        id: foto_perfil
+
+    ScreenManager:  # transforma o main.kv em um gerenciador de telas
+        pos_hint: {"right": 1, "top": 0.7}
+        size_hint: 1, 0.7
+
+        # esse id é necessário para que o código python consiga puxar informações do arquivo .kv
+        id: screen_manager
+        LoginPage:
+            name: "loginpage"
+            id: loginpage
+        HomePage: # classe do telas.py
+            name: "homepage"
+            id: homepage
+
+        # quarto passo da criação de página, adicionar a classe aqui dentro do ScreenManager
+        AjustesPage:
+            name: "ajustespage"
+            id: ajustespage
+        AdicionarVendasPage:
+            name: "adicionarvendaspage"
+            id: adicionarvendaspage
+        AdicionarVendedorPage:
+            name: "adicionarvendedorpage"
+            id: adicionarvendedorpage
+        FotoPerfilPage:
+            name: "fotoperfilpage"
+            id: fotoperfilpage
+        ListarVendedoresPage:
+            name: "listarvendedorespage"
+            id: listarvendedorespage
+        TodasVendasPage:
+            name: "todasvendaspage"
+            id: todasvendaspage
+        VendasOutroVendedorPage:
+            name: "vendasoutrovendedorpage"
+            id: vendasoutrovendedorpage
+
