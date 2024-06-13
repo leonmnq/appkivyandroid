@@ -14,7 +14,7 @@ class MyFirebase():
         # link para criar conta
         # requisição para a API do Google, que cria o usuário
         link = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={self.API_KEY}"
-        print(f"email = {email}, senha = {senha}")
+        #print(f"email = {email}, senha = {senha}")
         # Payload do corpo da solicitação, informações que precisamos enviar
         info = {"email": email,
                 "password": senha,
@@ -24,7 +24,7 @@ class MyFirebase():
         # print(requisicao_dicionario)
 
         if requisicao.ok:  # se a requisição deu certo
-            print("Usuário Criado")
+            #print("Usuário Criado")
             # o que retorna caso o usuário seja criado
             # requisicao_dicionario["kind"]
             # requisicao_dicionario["idToken"] -> autenticação - IMPORTANTE - é o que diz o que o usuário pode alterar e o que ele não pode alterar no banco de dados
@@ -47,7 +47,7 @@ class MyFirebase():
             # requisição para pegar uma informação do proximo_id_vendedor no banco de dados
             requisicao_id = requests.get(f"https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/proximo_id_vendedor.json?auth={id_token}")
             requisicao_id_dicionario = requisicao_id.json()
-            print(f"requisicao_id_dicionario = {requisicao_id_dicionario}")
+            #print(f"requisicao_id_dicionario = {requisicao_id_dicionario}")
             id_vendedor = requisicao_id.json()
 
             # atualizando informações do usuário no banco de dados
@@ -73,7 +73,7 @@ class MyFirebase():
             mensagem_erro = requisicao_dicionario["error"]["message"]
             meu_aplicativo = App.get_running_app()  # retorna a classe do App que está rodando
             pagina_login = meu_aplicativo.root.ids["loginpage"]  # para pegar o id de um cara no main.kv, vou utilizar o meu_aplicativo.root.ids passando o id entre colchetes
-            print(mensagem_erro)
+            #print(mensagem_erro)
             if "INVALID_EMAIL" in mensagem_erro:
                 mensagem_erro = "E-MAIL INVÁLIDO"
             if "EMAIL_EXISTS" in mensagem_erro:
@@ -86,7 +86,7 @@ class MyFirebase():
                 mensagem_erro = "SENHA FRACA: Senha precisa ter pelo menos 6 caracteres"
             pagina_login.ids["mensagem_login"].text = mensagem_erro  # recebe o erro
             pagina_login.ids["mensagem_login"].color = (1, 0, 0, 1)  # muda a cor do erro para vermelho
-        print(requisicao_dicionario)
+        #print(requisicao_dicionario)
 
     def fazer_login(self, email, senha):
         # link fonte = https://cloud.google.com/identity-platform/docs/use-rest-api?hl=pt-br
@@ -148,7 +148,7 @@ class MyFirebase():
         }
         requisicao = requests.post(link, data=info)
         requisicao_dicionario = requisicao.json()  # transormar a requisição .json em um dicionário python
-        print(f"requisicao_dicionario (trocar_token) = {requisicao_dicionario}")
+        #print(f"requisicao_dicionario (trocar_token) = {requisicao_dicionario}")
         local_id = requisicao_dicionario["user_id"]
         id_token = requisicao_dicionario["id_token"]
         return local_id, id_token  # retorna uma tupla

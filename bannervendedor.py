@@ -27,11 +27,11 @@ class BannerVendedor(FloatLayout):  # a classe BannerVendedor será uma subclass
         link = f'https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/.json?orderBy="id_vendedor"&equalTo="{id_vendedor_valor}"'
         requisicao = requests.get(link)
         requisicao_dicionario = requisicao.json()
-        print(f"requisicao_dicionario (BannerVendedor) = {requisicao_dicionario}")
+        #print(f"requisicao_dicionario (BannerVendedor) = {requisicao_dicionario}")
 
         # pegando o valor do dicionário sem passar a chave para ele
         valor = list(requisicao_dicionario.values())[0]  # valor recebe um dicionário com todas as informações do vendedor
-        print(f"valor (BannerVendedor)= {valor}")
+        #print(f"valor (BannerVendedor)= {valor}")
         avatar = valor["avatar"]
         total_vendas = valor["total_vendas"]
 

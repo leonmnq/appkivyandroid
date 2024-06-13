@@ -37,7 +37,7 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
         pagina_fotoperfil = self.root.ids["fotoperfilpage"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
         lista_fotos = pagina_fotoperfil.ids["lista_fotos_perfil"]
         for foto in arquivos:
-            print(f"foto = {foto}")
+            #print(f"foto = {foto}")
             # imagem = Image(source=f"icones/fotos_perfil/{foto}")
             imagem = ImageButton(source=f"icones/fotos_perfil/{foto}", on_release=partial(self.mudar_foto_perfil, foto))
             lista_fotos.add_widget(imagem)
@@ -47,7 +47,7 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
         pagina_adicionarvendas = self.root.ids["adicionarvendaspage"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
         lista_clientes = pagina_adicionarvendas.ids["lista_clientes"]
         for foto_cliente in arquivos:
-            print(f"foto_cliente = {foto_cliente}")
+            #print(f"foto_cliente = {foto_cliente}")
             imagem = ImageButton(source=f"icones/fotos_clientes/{foto_cliente}",
                                  on_release=partial(self.selecionar_cliente, foto_cliente))
             label = LabelButton(text=foto_cliente.replace(".png", "").capitalize(),  # tira .png do nome e coloca a primeira letra maiúscula (capitalize())
@@ -92,16 +92,16 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
             # requisicao = requests.get(f"https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/{self.id_usuario}.json")
             requisicao = requests.get(f"https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}")  # a requisição deve terminar com .json  # '?auth={self.id_token}' diz quem é o usuário que está fazendo essa requisição
             # sempre que é feita uma requisição, ela é devolvida para nós no formato json
-            print(f"requisicao.json() = {requisicao.json()}")  # colocando .json() aqui, a informação retorna traduzida em um dicionário python
+            #print(f"requisicao.json() = {requisicao.json()}")  # colocando .json() aqui, a informação retorna traduzida em um dicionário python
             requisicao_dicionario = requisicao.json()
 
             # preencher foto de perfil
             avatar = requisicao_dicionario['avatar']
-            print(avatar)
+            #print(avatar)
             self.avatar = avatar  # vai me permitir armazenar dentro do MainApp, dentro do self, as informações desse usuário, não sendo necessário fazer requisição toda hora
             foto_perfil = self.root.ids["foto_perfil"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
             foto_perfil.source = f"icones/fotos_perfil/{avatar}"  # atualiza com a foto de perfil do usuário
-            print(f"requisicao_dicionario['vendas'] = {requisicao_dicionario['vendas']}")
+            #print(f"requisicao_dicionario['vendas'] = {requisicao_dicionario['vendas']}")
 
             # preencher o ID único
             id_vendedor = requisicao_dicionario['id_vendedor']
@@ -120,18 +120,18 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
 
             # preencher lista de vendas
             try:
-                print(f"requisicao_dicionario (carregar_informacao_usuario) = {requisicao_dicionario}")
+                #print(f"requisicao_dicionario (carregar_informacao_usuario) = {requisicao_dicionario}")
                 # vendas = requisicao_dicionario['vendas'][1:]
                 vendas = requisicao_dicionario['vendas']
                 self.vendas = vendas  # vai me permitir armazenar dentro do MainApp, dentro do self, as informações desse usuário, não sendo necessário fazer requisição toda hora
                 pagina_homepage = self.root.ids["homepage"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
-                print(f"pagina_homepage.ids = {pagina_homepage.ids}")
+                #print(f"pagina_homepage.ids = {pagina_homepage.ids}")
                 lista_vendas = pagina_homepage.ids["lista_vendas"]
 
                 # for venda in vendas: # sempre que você tiver que criar um cara de forma dinâmica, você vai ter que criar um elemento dentro do seu arquivo .kv por meio do código em python
                 for id_venda in vendas:
                     venda = vendas[id_venda]
-                    print(f"venda = {venda}")
+                    #print(f"venda = {venda}")
                     # venda['cliente']
                     # venda['data']
 
@@ -146,7 +146,8 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
             # except:
             #     pass
             except Exception as excecao:
-                print(f"exceção = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+                #print(f"exceção = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+                pass
 
             # preencher equipe de vendedores
             equipe = requisicao_dicionario["equipe"]
@@ -159,20 +160,20 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
                     # vamos criar um banner para cada vendedor que existir na equipe
                     banner_vendedor = BannerVendedor(id_vendedor=id_vendedor_equipe)
                     lista_vendedores.add_widget(banner_vendedor)
-            print("teste")
+            #print("teste")
             self.mudar_tela("homepage")
 
         except:  # se não der certo carregar as informações do usuário
             pass
 
     def mudar_tela(self, id_tela):
-        print(f"id_tela = {id_tela}")
-        print(f"self.root.ids = {self.root.ids}")  # self.root faz referência ao gerenciador de telas, main.kv
+        #print(f"id_tela = {id_tela}")
+        #print(f"self.root.ids = {self.root.ids}")  # self.root faz referência ao gerenciador de telas, main.kv
         gerenciador_telas = self.root.ids["screen_manager"]  # variável gerenciador_telas recebe o gerenciar de telas
         gerenciador_telas.current = id_tela  # tela atual que será exibida
 
     def mudar_foto_perfil(self, foto, *args):
-        print(f"foto = {foto}")
+        #print(f"foto = {foto}")
         foto_perfil = self.root.ids["foto_perfil"]
         foto_perfil.source = f"icones/fotos_perfil/{foto}"
 
@@ -194,7 +195,7 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
         # requisição no banco para procurar se tem um vendedor que tem esse mesmo id vendedor
         requisicao = requests.get(link)
         requisicao_dicionario = requisicao.json()
-        print(f"requisicao_dicionario (adicionar_vendedor)= {requisicao_dicionario}")
+        #print(f"requisicao_dicionario (adicionar_vendedor)= {requisicao_dicionario}")
 
         pagina_adicionarvendedor = self.root.ids["adicionarvendedorpage"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
         mensagem_texto = pagina_adicionarvendedor.ids["mensagem_outrovendedor"]
@@ -332,7 +333,7 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
             # pegando informações do usuário do banco de dados
             requisicao = requests.get(f"https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/{self.local_id}/total_vendas.json?auth={self.id_token}")
             requisicao_dicionario = requisicao.json()
-            print(f"requisicao_dicionario (adicionar_venda) = {requisicao_dicionario}")
+            #print(f"requisicao_dicionario (adicionar_venda) = {requisicao_dicionario}")
             total_vendas = float(requisicao.json())
             total_vendas = total_vendas + preco
             info = f'{{"total_vendas": "{total_vendas}"}}'
@@ -367,7 +368,7 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
         # lendo informações no banco de dados
         requisicao = requests.get(f'https://aplicativocelularkivy-fefbf-default-rtdb.firebaseio.com/.json?orderBy="id_vendedor"')  # pegando todas as informações do banco de dados ordenando pelo id_vendedor
         requisicao_dicionario = requisicao.json()
-        print(f"requisicao_dicionario (carregar_todas_vendas) = {requisicao_dicionario}")
+        #print(f"requisicao_dicionario (carregar_todas_vendas) = {requisicao_dicionario}")
 
         # preencher foto de perfil
         foto_perfil = self.root.ids["foto_perfil"]  # sempre que eu quiser pegar o id de um cara no main.kv, vou utilizar o self.root.ids passando o id entre colchetes
@@ -388,7 +389,8 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
                                          preco=venda["preco"], quantidade=venda["quantidade"], unidade=venda["unidade"])
                     lista_vendas.add_widget(banner)  # adiciona o banner na lista de vendas
             except Exception as excecao:
-                print(f"exceção (carregar_todas_vendas) = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+                #print(f"exceção (carregar_todas_vendas) = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+                pass
         # preencher o total de vendas
         pagina_todasvendas.ids["label_total_vendas"].text = f"[color=#000000]Total de Vendas:[/color] [b]R$ {total_vendas}[/b]"  # edita o texto do label_total_vendas da página todasvendaspage
 
@@ -426,7 +428,8 @@ class MainApp(App):  # classe MainApp é uma subclasse da classe App
                                      preco=venda["preco"], quantidade=venda["quantidade"], unidade=venda["unidade"])
                 lista_vendas.add_widget(banner)
         except Exception as excecao:
-            print(f"exceção (carregar_todas_vendas) = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+            #print(f"exceção (carregar_todas_vendas) = {excecao}")  # printa a mensagem de erro se existir erro dentro do try
+            pass
 
         # preencher o total de vendas
         total_vendas = dicionario_informacoes_vendedor["total_vendas"]
