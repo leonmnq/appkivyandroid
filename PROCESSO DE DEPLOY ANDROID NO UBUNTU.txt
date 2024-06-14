@@ -70,4 +70,17 @@
 	
 -por fim:
 	-novamente no terminal do ubuntu, dentro da pasta appkivyandroid: buildozer android debug deploy run logcat
+	-se tudo der certo aparecerá:
+		-List of devices attached com o nome do seu celular e o status device
+		-uma mensagem em azul: Deploy on (nome do seu celular, ex: RX8R804VPOE)
+		-Performing Streamed Install Success
+		-Application pushed.
+		-Run on (nome do seu celular, ex: RX8R804VPOE)
 	-o aplicativo abrirá e você pode testar se todas as funcionalidades estão corretas
+
+-caso ocorra um erro kivy._clock do tipo, módulo não encontrado
+	-no terminal:
+		-pip3 show setuptools (para mostrar a versão que você tem)
+	-fazendo downgrade, no terminal:
+		-pip3 uninstall setuptools
+		-pip3 install setuptools=58.0.0

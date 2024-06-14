@@ -1,0 +1,60 @@
+-é um processo que demora até 72 horas para ser aprovado pela google
+-é um processo pago, taxa única de 25 dólares
+-necessário fazer login com algum email gerenciado pelo gmail
+-será obrigada a verificação de duas etapas
+-digita google play console no google e entra no primeiro link
+-dentro da página, clica em Acesse o Play Console
+-na página seguinte, na opção "Você", clica em Vamos começar ->
+-em Sobre você na primeira caixa de texto, inserir: Esse é o meu primeiro aplicativo na Play Console
+-em Outras Contas do Google, marque sim ou não nos radio buttons se utilizou outras contas google no Play Console
+-se tiver site, insira a url do site na caixa de texto seguinte, se não, marque que não tem site (recomendado colocar alguma rede social sua para o google não achar estranho) e clica em Próximo
+-na página seguinte, Conta de desenvolvedor, colocar um nome para sua conta
+-Nome do contato, seu nome
+-Endereço de e-mail do contato, seu e-mail e clica em verificar
+-seleciona o Idioma preferencial, português Brasil
+-Endereço de contato, Brasil
+-Linha de endereço 1, nome da rua, número
+-Bairro
+-Cidade
+-Estado
+-CEP
+-Número de telefone para contato, seu número de telefone +5521999999999 e clica em Próximo
+-em Apps
+-insira o número de apps que pretente publicar
+-marque se deseja ganhar dinheiro no Google Play
+-selecione a categoria e clique em Próximo
+-na página seguinte, confirma os termos e clica em Criar conta e fazer o pagamento
+-após feito o pagamento, a conta é criada e você pode acessar o Play Console
+-em Todos os apps, clica em Confirmar identidade (esse processo pode levar até 2 dias úteis)
+-na página que abre, marca permitir e clica em Começar a verificação
+-coloca seu nome completo, seu tipo de identidade e clica em Próxima
+-enquanto a verificação está em andamento
+-clica em Criar app
+-coloca o Nome do app
+-Idioma padrão
+-App ou jogo
+-Gratuito ou pago
+-confirma se atende as políticas do pragrama para desenvolvedores
+-aceita os termos
+-aceita a legislação
+-e clica em Criar App
+-na página seguinte, Começar a testar agora, coloca os emails das pessoas que deseja que testem seu app
+-em Configurar o app
+-Política de Privacidade, entrar no google e procurar um gerador de política de privacidade, salvar em um docx, colocar em um drive ou em um Readme no GitHub e passar o link na url da política de privacidade
+-Acesso de apps, marcar todos ou alguns recursos são restritos, + Adicionar novas instruções
+-em Nome, colocar: Login
+-em nome de usuário/número de telefone, colocar: teste@teste.com
+-senha, 123456
+-outras instruções, Preencha os dados de login com o usuário teste@teste.com e senha 123456 para entrar. (Atenção: Esse login tem que funcionar, se não, o aplicativo não será aprovado na Play Console)
+-clica em Aplicar e volta para o Painel
+-em Anúncios, Não, meu app não tem anúncios, clica em Salvar e volta para o Painel
+-Classificação de conteúdo, clica em Iniciar questionário, coloca um email para o google entrar em contato com você, seleciona a categoria "Outros" e clica em Próximo, Aplicação transferida, marca Não, Conteúdos de Utilizador, marca Não, Conteúdo Online, marca Não, Promoção ou Venda, marca Não, Diversos, Não, Não, Não e Não e clica em Salvar e posteriormente em Enviar
+-de volta no Painel, Público-alvo, seleciona Maiores de 18 anos, Atratividade para crianças, Não, clica em Próximo e Salvar
+-de volta no Painel, Apps de notícias, seleciona Não e clica em Salvar
+-de volta no Painel, Apps de status e monitoramento de contatos com COVID-19, marca que o app não tem essa finalidade e clica em Salvar
+-de volta no Painel, Segurança dos dados, passa as etapas e clica em Iniciar e Próximo, O app coleta ou compartilha algum dos tipos de dados do usuário obrigatórios? Marca Não e clica em Enviar
+-de volta no Painel, Selecionar uma categoria do app e fornecer detalhes de contato, App ou jogo, App, Categoria, Empresa, Endereço de e-mail, coloque o e-mail do desenvolvedor do aplicativo que será exibido para os usuários, Marketing Externo, opcional, clica em Salvar
+-de volta no Painel, Configurar a página "Detalhes do app", Nome do app, Breve descrição, Aplicativo para gerenciamento de vendas da equipe Python Impressionador, Descrição completa, Aplicativo para os vendedores cadastrarem os valores e itens vendidos a medida que forem fazendo as vendas. Em Elementos gráficos, coloca as imagens salvas na Aula 56 do Projeto 9 e clica em Salvar
+-de volta no Painel, Publicar o app na Google Play, Selecionar países e regiões, Brasil, Adicionar
+-em Produção, clica em Criar nova versão, Pacotes de apps, coloca o arquivo .aab gerado na aula anterior, Nome da versão, App Vendas PI, Notas da versão, Versão Inicial de Lançamento e clica em Avaliar versão 
+-por fim clica em Iniciar Lançamento para Produção, o Google pode demorar até 15 dia para fazer a revisão do app
