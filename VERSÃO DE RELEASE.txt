@@ -1,0 +1,28 @@
+-versão de release é a única versão que a google play vai aceitar
+-criando uma pasta para colocar a versão release:
+	-no terminal do ubuntu, dentro da pasta appkivyandroid:
+		-mkdir -p ~/keystores/
+
+-gerando a chave:
+	-no terminal do ubuntu, dentro da pasta appkivyandroid:
+		-keytool -genkey -v -keystore ~/keystores/keyappkivy.android -alias keyappkivyalias -keyalg RSA -keysize 2048 -validity 10000
+		-password: 123key456
+		-re-enter password: 123key456
+		-nome e sobrenome: any developer
+		-unidade organizacional: any developer
+		-nome da empresa: any developer
+		-cidade: Ponta Grossa
+		-estado: Parana
+		-se estiver tudo correto: s (de sim)
+
+-exportando variáveis para criar o arquivo release.aab
+	-no terminal do ubuntu, dentro da pasta appkivyandroid:
+		-export P4A_RELEASE_KEYSTORE=~/keystores/keyappkivy.android
+		-export P4A_RELEASE_KEYSTORE_PASSWD="123key456"
+		-export P4D_RELEASE_KEYALIAS_PASSWD="123key456"
+		-export P4D_RELEASE_KEYALIAS=keyappkivyalias
+
+-criando a versão release:
+	-no terminal do ubuntu, dentro da pasta appkivyandroid:
+		-buildozer android release
+
