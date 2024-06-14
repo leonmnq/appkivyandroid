@@ -1,0 +1,73 @@
+-para realizar atualizações necessárias:
+	-no terminal do ubuntu: sudo apt update
+	-digita sua senha: 123456
+-instalando todo o necessário para realizar o deploy do aplicativo
+	-no terminal do ubuntu: sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+	LIRA FEZ -no terminal do ubuntu: pip3 install --user --upgrade Cython==0.29.19 virtualenv
+	EU FIZ -no terminal do ubuntu: pip3 install --user --upgrade Cython==0.29.33 virtualenv
+-editando arquivo .bashrc:
+	-no menu vertical da esquerda no ubuntu, clicar em Arquivos, Pasta pessoal e apertar ctrl+h para mostrar arquivos ocultos. Abrir o arquivo .bashrc e digitar na linha 119: export PATH=$PATH:~/.local/bin/ e clica em Salvar
+-instalando buildozer que faz a tradução do código python para o android
+	-no terminal do ubuntu: pip3 install --user --upgrade buildozer
+	-reinicia a máquina virtual
+
+-gerando o token de acesso no github:
+	-com login feito no github, clicar sobre a foto de perfil no canto superior direito, e depois em Settings
+	-rolar para baixo até <> Developer settings, e clica 
+	-clica em Personal access tokens e Tokens (classic)
+	-em Personal access tokens (classic), clica em Generate a personal access token
+	-em Note, coloca um nome, por exemplo: deployandroid
+	-marca TODAS as caixas abaixo e clica em Generate token
+	-agora copia o token gerado
+
+-clonando o projeto do github
+	-no terminal do ubuntu: git clone https://github.com/leonmnq/appkivyandroid 
+	-digita o username: leonmnq
+	-em password, cola o token de acesso: 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 expira: 13/07/24
+
+-encontrando o clone do projeto
+	-no menu vertical da esquerda no ubuntu, clicar em Arquivos, Pasta pessoal e lá estará a pasta 'appkivyandroid'
+
+-navegando nas pastas pelo terminal do ubuntu
+	-por padrão o terminal está na Pasta pessoal
+	-se digitar ls no terminal, vai listar as pastas dentro da Pasta pessoal
+	-digitando cd appkivyandroid, vai entrar dentro da pasta appkivyandroid
+	-se digitar cd .., vai retornar para Pasta pessoal
+
+-no terminal do ubuntu, dentro da pasta appkivyandroid:
+	-vamos inicializar um projeto buildozer, que é quem faz a transição do python para o aplicativo android
+	-no terminal, dentro da pasta appkivyandroid: buildozer init
+
+-agora podemos ir na pasta appkivyandroid e abrir o arquivo buildozer.spec para configurar o aplicativo:
+	-linha 4: title = App Kivy Android
+	-linha 7: package.name = appkivyandroid
+	-linha 10: package.domain = org.appkivyandroid
+	-linha 16: source.include_exts = py,png,jpg,kv,atlas (não alteramos mas é importante adicionar aqui todas as extensões que seu app manipula)
+	-linha 40: requirements = python3,kivy,requests,certifi,urllib3,chardet,idna (adicionar aqui todas as bibliotecas que o app utiliza)
+	-linha 70: osx.kivy_version = 2.3.0 (coloquei aqui a mesma versão do Kivy que usei para construir o app no Pycharm)
+	
+	-linha 104: android.api = 31 (31 rodou no meu celular)
+	-linha 273: android.logcat_filters = *:S python:D
+	
+-nas configurações do celular, encontrar Número de compilação, clicar 7 vezes sobre o número para ativar o modo de desenvolvedor
+	-entra em Opções do desenvolvedor e marca, Permanecer ativo e Depuração USB
+	-conecta o celular no computador com o cabo usb e verifica se está sendo reconhecido pela máquina virtual, clica com o botão direito do mouse sobre o ícone usb na parte inferior da máquina virtual, tem que haver um 'checked' antes do nome do celular
+
+-comando para fazer o deploy no android: (com o celular conectado)
+	-no terminal do ubuntu, dentro da pasta appkivyandroid: buildozer android debug deploy run logcat
+	-durante o processo aparecerão 2 perguntas onde você irá inserir y de yes para permitir a continuidade do processo 
+	-o processo demora meia hora mais ou menos
+	-se tudo der certo aparecerá: 
+		-List of devices attached com o nome do seu celular e o status unauthorized						
+		-uma mensagem em azul: Deploy on (nome do seu celular, ex: RX8R804VPOE)
+		-abaixo uma grande mensagem Command failed em vermelho
+		-na tela do seu celular uma mensagem para permitir a depuração USB
+	-basta permitir a depuração USB e rodar novamente no terminal do ubuntu, dentro da pasta appkivyandroid: buildozer android debug deploy run logcat
+	-agora o app vai abrir no seu celular, mas ao tentar logar ou criar uma conta, o app irá fechar. Isso é um problema de configuração de internet que temos que corrigir no arquivo buildozer.spec
+
+-novamente no buildozer.spec para corrigir o problema de conexão com a internet
+	-linha 98: android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
+	
+-por fim:
+	-novamente no terminal do ubuntu, dentro da pasta appkivyandroid: buildozer android debug deploy run logcat
+	-o aplicativo abrirá e você pode testar se todas as funcionalidades estão corretas
